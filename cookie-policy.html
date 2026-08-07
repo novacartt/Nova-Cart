@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Policy – Nova Cart</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary: #6C3CE1;
+            --primary-dark: #5A2FC4;
+            --primary-light: #8B6BE8;
+            --secondary: #00C9A7;
+            --dark: #0A0A1A;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0B8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            padding-bottom: 80px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+        }
+
+        .navbar {
+            padding: 16px 0;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 26, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-text { font-size: 24px; font-weight: 800; color: var(--text-light); text-decoration: none; }
+        .logo-text .highlight { color: var(--primary); }
+        .logo-icon { color: var(--primary); font-size: 28px; margin-right: 10px; }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 20px !important;
+            border-radius: 10px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-light) !important;
+            background: rgba(108, 60, 225, 0.15);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: 10px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--text-light);
+            background: rgba(108, 60, 225, 0.1);
+        }
+
+        .policy-hero {
+            padding: 140px 0 40px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(0,201,167,0.06), transparent 70%), var(--dark);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 60, 225, 0.15);
+            border: 1px solid rgba(108, 60, 225, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .policy-section {
+            margin-bottom: 32px;
+        }
+        .policy-section h4 {
+            font-weight: 700;
+            color: var(--primary-light);
+            margin-bottom: 12px;
+        }
+        .policy-section p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .policy-section ul {
+            color: var(--text-muted);
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        .policy-section ul li { margin-bottom: 4px; }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer h5 { font-weight: 700; margin-bottom: 20px; color: var(--text-light); }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 4px 0;
+        }
+        .footer a:hover { color: var(--text-light); }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: var(--transition);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .social-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0 env(safe-area-inset-bottom, 0);
+        }
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 10px;
+            padding: 4px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+        .mobile-bottom-nav .nav-item i { font-size: 22px; margin-bottom: 2px; }
+        .mobile-bottom-nav .nav-item.active { color: var(--primary); }
+        .mobile-bottom-nav .nav-item.active i { transform: translateY(-2px); }
+        .mobile-bottom-nav .nav-item .badge-count {
+            position: absolute;
+            top: -2px;
+            right: 50%;
+            transform: translateX(28px);
+            background: #FF4757;
+            color: #fff;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-nav { display: flex !important; }
+            .policy-hero { padding: 120px 0 30px; }
+            .policy-section { margin-bottom: 24px; }
+        }
+        @media (min-width: 769px) { .mobile-bottom-nav { display: none !important; } }
+        @media (max-width: 576px) {
+            .policy-hero h1 { font-size: 28px; }
+            .btn-primary-custom, .btn-outline-custom { padding: 8px 20px; font-size: 14px; }
+            .footer { padding: 40px 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon"><i class="fas fa-cart-plus"></i></span>
+                <span class="logo-text">Nova <span class="highlight">Cart</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="d-flex gap-2 ms-3">
+                    <a href="portal/" class="btn btn-primary-custom"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="admin/" class="btn btn-outline-custom"><i class="fas fa-crown"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== POLICY HERO ===== -->
+    <section class="policy-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="hero-badge"><i class="fas fa-cookie-bite"></i> Cookie Policy</span>
+                    <h1 class="fw-bold display-4"><span class="text-gradient">Cookie Policy</span></h1>
+                    <p class="text-muted fs-5 mt-3">
+                        Effective Date: 06 August 2026
+                    </p>
+                    <p class="text-muted">
+                        This Cookie Policy explains how Nova Cart uses cookies and similar technologies when you access or use our website, applications, and services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POLICY CONTENT ===== -->
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="glass p-4 p-md-5">
+
+                        <div class="policy-section">
+                            <h4>1. What Are Cookies?</h4>
+                            <p>Cookies are small text files stored on your device by your web browser when you visit a website. They help websites function properly, improve performance, remember user preferences, and enhance security. Nova Cart may also use similar technologies, such as local storage, session storage, and other technologies that perform similar functions.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>2. Why We Use Cookies</h4>
+                            <ul>
+                                <li>Keep you securely signed in</li>
+                                <li>Remember your preferences and settings</li>
+                                <li>Improve website functionality</li>
+                                <li>Enhance website performance</li>
+                                <li>Provide a better user experience</li>
+                                <li>Protect customer accounts from unauthorized access</li>
+                                <li>Detect suspicious or fraudulent activity</li>
+                                <li>Help diagnose technical issues</li>
+                                <li>Measure website usage and improve our services</li>
+                            </ul>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>3. Types of Cookies We May Use</h4>
+                            <p><strong>Essential Cookies</strong></p>
+                            <p>These cookies are necessary for the operation of the website and enable core features such as secure login, account authentication, session management, and navigation. Without these cookies, certain services may not function properly.</p>
+                            
+                            <p class="mt-3"><strong>Security Cookies</strong></p>
+                            <ul>
+                                <li>Detect suspicious activity</li>
+                                <li>Prevent unauthorized access</li>
+                                <li>Protect customer accounts</li>
+                                <li>Reduce fraud risks</li>
+                                <li>Maintain platform security</li>
+                            </ul>
+                            
+                            <p class="mt-3"><strong>Performance Cookies</strong></p>
+                            <p>Performance cookies help us understand how visitors interact with the website so that we can improve speed, usability, and overall performance. Where required by law, these cookies will only be used with appropriate consent.</p>
+                            
+                            <p class="mt-3"><strong>Preference Cookies</strong></p>
+                            <p>These cookies may remember certain user preferences, such as language or interface settings, to provide a more personalized experience.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>4. Third-Party Technologies</h4>
+                            <p>Nova Cart may use trusted third-party service providers for functions such as payment processing, analytics, communication, or cloud hosting. These third parties may use their own cookies or similar technologies in accordance with their own privacy practices. Nova Cart does not control the cookie policies of third-party services.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>5. Managing Cookies</h4>
+                            <ul>
+                                <li>View stored cookies</li>
+                                <li>Delete cookies</li>
+                                <li>Block cookies</li>
+                                <li>Configure cookie preferences</li>
+                            </ul>
+                            <p class="mt-2">Please note that disabling certain cookies may affect the functionality, security, or performance of the Nova Cart platform.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>6. Data Collected Through Cookies</h4>
+                            <ul>
+                                <li>Browser type</li>
+                                <li>Device type</li>
+                                <li>Operating system</li>
+                                <li>Language preferences</li>
+                                <li>Login session information</li>
+                                <li>Website usage statistics</li>
+                                <li>Security-related information</li>
+                            </ul>
+                            <p class="mt-2">Nova Cart does not use cookies to intentionally collect sensitive personal information such as passwords, Aadhaar numbers, PAN numbers, or banking credentials.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>7. Cookie Retention</h4>
+                            <ul>
+                                <li><strong>Session Cookies</strong> are automatically deleted when you close your browser.</li>
+                                <li><strong>Persistent Cookies</strong> may remain until they expire or are deleted by you.</li>
+                            </ul>
+                            <p class="mt-2">Retention periods may vary depending on the purpose of the cookie.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>8. Updates to This Policy</h4>
+                            <p>Nova Cart may update this Cookie Policy from time to time to reflect changes in technology, legal requirements, or our business practices. The updated version will become effective once published on the platform.</p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>9. Contact</h4>
+                            <p>If you have any questions regarding this Cookie Policy, please contact:</p>
+                            <p><strong>Nova Cart</strong><br />
+                            Email: <a href="mailto:support.novacart@proton.me" class="text-primary">support.novacart@proton.me</a></p>
+                        </div>
+
+                        <div class="policy-section">
+                            <h4>10. Governing Law</h4>
+                            <p>This Cookie Policy shall be governed by the laws of India. Subject to applicable law, any disputes relating to this Policy shall be subject to the exclusive jurisdiction of the competent courts located in Mumbai, Maharashtra.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5><i class="fas fa-cart-plus text-primary"></i> Nova Cart</h5>
+                    <p class="text-muted">Technology-based EMI financing platform.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5>Quick Links</h5>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="product.html">Products</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5>Policies</h5>
+                 

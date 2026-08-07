@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Nova Cart – Buy Now Pay Later EMI Platform</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon"><i class="fas fa-cart-plus"></i></span>
+                <span class="logo-text">Nova <span class="highlight">Cart</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="d-flex gap-2 ms-3">
+                    <a href="portal/" class="btn btn-primary-custom btn-sm"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="admin/" class="btn btn-outline-custom btn-sm"><i class="fas fa-crown"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-badge"><i class="fas fa-bolt"></i> Technology-Based EMI Platform</div>
+                    <h1>Buy Now, Pay <br /><span class="highlight">Later</span> with <br />Nova Cart</h1>
+                    <p>India's trusted EMI financing platform. Get No Cost EMI, UPI EMI, and flexible payment options on your favorite products.</p>
+                    <div class="d-flex flex-wrap gap-2 gap-md-3 mt-3 mt-md-4">
+                        <a href="product.html" class="btn btn-primary-custom"><i class="fas fa-rocket"></i> Explore Products</a>
+                        <a href="apply-emi.html" class="btn btn-outline-custom"><i class="fas fa-play-circle"></i> Apply Now</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="value">₹20,000+</span>
+                            <span class="label">Min. Monthly Income</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="value">15%</span>
+                            <span class="label">Min. Down Payment</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="value">24-72 Hrs</span>
+                            <span class="label">Fast Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="hero-image text-center floating-card">
+                        <div class="glass p-5 position-relative" style="border-radius: 20px; background: #FFFFFF; box-shadow: 0 8px 40px rgba(0,0,0,0.06);">
+                            <i class="fas fa-credit-card" style="font-size: 100px; color: #2874F0; opacity: 0.2;"></i>
+                            <i class="fas fa-mobile-screen-button" style="font-size: 70px; color: #FF9F00; opacity: 0.2; position: absolute; bottom: 20px; right: 30px;"></i>
+                            <div class="glass p-3 position-absolute" style="top: 10%; right: 5%; width: 130px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid #E8E8E8;">
+                                <i class="fas fa-check-circle text-success"></i>
+                                <span class="fw-bold ms-1" style="font-size: 13px; color: #212121;">No Cost EMI</span>
+                            </div>
+                            <div class="glass p-3 position-absolute" style="bottom: 10%; left: 5%; width: 130px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid #E8E8E8;">
+                                <i class="fas fa-shield-alt text-primary"></i>
+                                <span class="fw-bold ms-1" style="font-size: 13px; color: #212121;">Secure</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BANNER SLIDER ===== -->
+    <section class="banner-slider">
+        <div class="container">
+            <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="banner-content">
+                            <h2 class="fw-bold">No Cost EMI on OnePlus</h2>
+                            <p class="text-muted">Get your favorite OnePlus phone with 0% interest EMI</p>
+                            <a href="product.html" class="btn btn-primary-custom mt-2 mt-md-3" style="align-self: flex-start; padding: 8px 24px; font-size: 14px;">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="banner-content">
+                            <h2 class="fw-bold">UPI EMI Now Available</h2>
+                            <p class="text-muted">Pay via UPI EMI on all eligible products</p>
+                            <a href="product.html" class="btn btn-primary-custom mt-2 mt-md-3" style="align-self: flex-start; padding: 8px 24px; font-size: 14px;">Explore</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="banner-content">
+                            <h2 class="fw-bold">Festival Offers Live</h2>
+                            <p class="text-muted">Up to 20% off on select products with EMI</p>
+                            <a href="product.html" class="btn btn-primary-custom mt-2 mt-md-3" style="align-self: flex-start; padding: 8px 24px; font-size: 14px;">View Offers</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POPULAR BRANDS ===== -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="text-center mb-3 mb-md-5">
+                <h2 class="section-title">Popular <span class="highlight">Mobile Brands</span></h2>
+                <p class="section-subtitle">Choose your favorite brand and apply for easy EMI with Nova Cart</p>
+            </div>
+            <div class="row g-2 g-md-4 justify-content-center">
+                <div class="col-4 col-md-4 col-lg-2">
+                    <div class="brand-card" onclick="location.href='brands/oneplus.html'" role="button" tabindex="0">
+                        <div class="brand-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <span class="brand-name">OnePlus</span>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 col-lg-2">
+                    <div class="brand-card" onclick="location.href='brands/vivo.html'" role="button" tabindex="0">
+                        <div class="brand-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <span class="brand-name">vivo</span>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 col-lg-2">
+                    <div class="brand-card" onclick="location.href='brands/oppo.html'" role="button" tabindex="0">
+                        <div class="brand-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <span class="brand-name">OPPO</span>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 col-lg-2">
+                    <div class="brand-card" onclick="location.href='brands/realme.html'" role="button" tabindex="0">
+                        <div class="brand-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <span class="brand-name">realme</span>
+                    </div>
+                </div>
+                <div class="col-4 col-md-4 col-lg-2">
+                    <div class="brand-card" onclick="location.href='brands/motorola.html'" role="button" tabindex="0">
+                        <div class="brand-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <span class="brand-name">Motorola</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BAR ===== -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="row g-2 g-md-4">
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="trust-item">
+                        <span class="trust-icon"><i class="fas fa-lock"></i></span>
+                        <h6 class="trust-title">SSL Secured</h6>
+                        <p class="trust-desc">256-bit encryption</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="trust-item">
+                        <span class="trust-icon"><i class="fas fa-shield-halved"></i></span>
+                        <h6 class="trust-title">Secure Verify</h6>
+                        <p class="trust-desc">Identity verification</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="trust-item">
+                        <span class="trust-icon"><i class="fas fa-flag-india"></i></span>
+                        <h6 class="trust-title">Made in India</h6>
+                        <p class="trust-desc">Proudly Indian</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="trust-item">
+                        <span class="trust-icon"><i class="fas fa-bolt"></i></span>
+                        <h6 class="trust-title">Fast Review</h6>
+                        <p class="trust-desc">24-72 hours</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg">
+                    <div class="trust-item">
+                        <span class="trust-icon"><i class="fas fa-percent"></i></span>
+                        <h6 class="trust-title">15% Down</h6>
+                        <p class="trust-desc">Minimum payment</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5><i class="fas fa-cart-plus text-primary"></i> Nova Cart</h5>
+                    <p style="color: #B0B0B0; font-size: 14px;">Technology-based EMI financing platform. Buy now, pay later with flexible EMI options.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-icon" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5>Quick Links</h5>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="product.html">Products</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h5>Policies</h5>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms &amp; Conditions</a>
+                    <a href="emi-terms.html">EMI Terms</a>
+                    <a href="refund-policy.html">Refund Policy</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+                <div class="col-md-2">
+                    <h5>Support</h5>
+                    <a href="mailto:support.novacart@proton.me">support.novacart@proton.me</a>
+                    <p style="color: #B0B0B0; font-size: 12px;">10:00 AM – 7:00 PM<br />Monday–Sunday</p>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2026 Nova Credit Advisory Private Limited. All rights reserved.</p>
+                <p style="font-size: 11px;">CIN: U72200MH2026PTC632517 | PAN: AAUPS2730D | GSTIN: 29AAUPS2730D1EC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MOBILE BOTTOM NAV ===== -->
+    <div class="mobile-bottom-nav" id="mobileBottomNav">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-3">
+                    <a href="index.html" class="nav-item active" aria-label="Home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="product.html" class="nav-item" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="checkout.html" class="nav-item" aria-label="Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="badge-count" id="mobileCartBadge">0</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="portal/" class="nav-item" aria-label="Account">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

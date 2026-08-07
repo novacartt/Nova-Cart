@@ -1,0 +1,148 @@
+/* ========================================
+   NOVA CART - RESPONSIVE STYLES (FIXED)
+   ======================================== */
+
+/* ===== LARGE DESKTOP ===== */
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+
+/* ===== DESKTOP ===== */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container { max-width: 960px; }
+    .hero h1 { font-size: 44px; }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container { max-width: 720px; }
+    .hero { padding: 110px 0 50px; min-height: 85vh; text-align: center; }
+    .hero h1 { font-size: 38px; }
+    .hero p { margin: 0 auto; max-width: 500px; }
+    .hero .d-flex { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-image { display: none; }
+    .brand-card { padding: 20px 16px; }
+    .brand-card .brand-icon { font-size: 36px; }
+    .trust-item { padding: 14px; }
+    .footer .row { gap: 20px; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 767px) {
+    .container { padding-left: 16px; padding-right: 16px; }
+    .hero { min-height: 80vh; padding: 95px 0 35px; text-align: center; }
+    .hero h1 { font-size: 30px; }
+    .hero p { font-size: 15px; margin: 0 auto; }
+    .hero .d-flex { justify-content: center; flex-wrap: wrap; }
+    .hero .d-flex .btn { flex: 1 1 auto; min-width: 120px; justify-content: center; }
+    .hero-image { display: none; }
+    .hero-badge { font-size: 11px; padding: 4px 12px; }
+    .section-title { font-size: 26px; }
+    .section-subtitle { font-size: 14px; margin-bottom: 20px; }
+    .brand-card { padding: 14px 10px; }
+    .brand-card .brand-icon { font-size: 28px; }
+    .brand-card .brand-name { font-size: 12px; }
+    .brands-section { padding: 30px 0; }
+    .trust-bar { padding: 20px 0; }
+    .trust-item { padding: 12px 8px; }
+    .trust-icon { font-size: 24px; margin-bottom: 4px; }
+    .trust-title { font-size: 12px; }
+    .trust-desc { font-size: 10px; }
+    .footer { padding: 24px 0 12px; margin-top: 20px; }
+    .footer h5 { font-size: 14px; margin-bottom: 10px; }
+    .footer a { font-size: 12px; padding: 2px 0; }
+    .social-icon { width: 30px; height: 30px; font-size: 12px; margin-right: 4px; }
+    .footer-bottom { font-size: 10px; padding-top: 10px; margin-top: 12px; }
+    .carousel-item .banner-content { padding: 20px 16px; min-height: 150px; }
+    .carousel-item .banner-content h2 { font-size: 17px; }
+    .carousel-item .banner-content p { font-size: 12px; }
+    .mobile-bottom-nav { padding: 4px 0 env(safe-area-inset-bottom, 0); }
+    .mobile-bottom-nav .nav-item { font-size: 9px; }
+    .mobile-bottom-nav .nav-item i { font-size: 18px; }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 576px) {
+    .container { padding-left: 12px; padding-right: 12px; }
+    .hero { min-height: 75vh; padding: 85px 0 25px; }
+    .hero h1 { font-size: 26px; }
+    .hero p { font-size: 14px; }
+    .hero-stats .stat-item { min-width: 50px; flex: 1 1 28%; }
+    .hero-stats .stat-item .value { font-size: 16px; }
+    .hero-stats .stat-item .label { font-size: 10px; }
+    .hero-stats { gap: 6px; }
+    .hero-badge { font-size: 10px; padding: 4px 10px; margin-bottom: 10px; }
+    .btn-primary-custom, .btn-outline-custom {
+        padding: 10px 16px;
+        font-size: 13px;
+        border-radius: 10px;
+        min-width: 100px;
+    }
+    .section-title { font-size: 22px; }
+    .section-subtitle { font-size: 13px; margin-bottom: 16px; }
+    .brand-card { padding: 10px 6px; }
+    .brand-card .brand-icon { font-size: 22px; }
+    .brand-card .brand-name { font-size: 10px; }
+    .trust-item { padding: 8px 4px; }
+    .trust-icon { font-size: 20px; }
+    .trust-title { font-size: 10px; }
+    .trust-desc { font-size: 9px; }
+    .banner-slider { padding: 12px 0; }
+    .carousel-item .banner-content { padding: 14px 12px; min-height: 120px; }
+    .carousel-item .banner-content h2 { font-size: 14px; }
+    .carousel-item .banner-content p { font-size: 11px; }
+    .carousel-item .banner-content .btn { padding: 6px 14px; font-size: 11px; }
+    .footer { padding: 20px 0 10px; margin-top: 12px; }
+    .footer h5 { font-size: 13px; margin-bottom: 8px; }
+    .footer a { font-size: 11px; padding: 2px 0; }
+    .social-icon { width: 28px; height: 28px; font-size: 11px; margin-right: 3px; }
+    .footer-bottom { font-size: 9px; padding-top: 8px; margin-top: 10px; }
+    .mobile-bottom-nav .nav-item i { font-size: 16px; }
+    .mobile-bottom-nav .nav-item { font-size: 8px; }
+    .mobile-bottom-nav .nav-item .badge-count {
+        width: 14px;
+        height: 14px;
+        font-size: 8px;
+        transform: translateX(20px);
+    }
+}
+
+/* ===== EXTRA SMALL (320px-375px) ===== */
+@media (max-width: 400px) {
+    .hero { min-height: 70vh; padding: 75px 0 20px; }
+    .hero h1 { font-size: 22px; }
+    .hero p { font-size: 13px; }
+    .hero-stats .stat-item .value { font-size: 14px; }
+    .hero-stats .stat-item .label { font-size: 9px; }
+    .hero-stats { gap: 4px; }
+    .btn-primary-custom, .btn-outline-custom {
+        padding: 8px 12px;
+        font-size: 11px;
+        min-width: 80px;
+    }
+    .hero-badge { font-size: 9px; padding: 3px 8px; }
+    .section-title { font-size: 20px; }
+    .brand-card .brand-icon { font-size: 18px; }
+    .brand-card .brand-name { font-size: 9px; }
+    .trust-icon { font-size: 18px; }
+    .trust-title { font-size: 9px; }
+    .trust-desc { font-size: 8px; }
+    .carousel-item .banner-content h2 { font-size: 13px; }
+    .carousel-item .banner-content p { font-size: 10px; }
+    .carousel-item .banner-content { padding: 12px 10px; min-height: 100px; }
+}
+
+/* ===== LANDSCAPE PHONE ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero { padding: 70px 0 20px; min-height: auto; }
+    .hero h1 { font-size: 24px; }
+    .hero-image { display: none; }
+    .hero-stats .stat-item .value { font-size: 14px; }
+    .hero-stats .stat-item .label { font-size: 10px; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+    .navbar, .mobile-bottom-nav, .footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; padding: 20px !important; }
+    .glass { background: #f5f5f5 !important; border: 1px solid #ddd !important; }
+}

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout – Nova Cart</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary: #6C3CE1;
+            --primary-dark: #5A2FC4;
+            --primary-light: #8B6BE8;
+            --secondary: #00C9A7;
+            --danger: #FF4757;
+            --success: #2ED573;
+            --dark: #0A0A1A;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0B8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            padding-bottom: 80px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+        }
+
+        .navbar {
+            padding: 16px 0;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 26, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-text { font-size: 24px; font-weight: 800; color: var(--text-light); text-decoration: none; }
+        .logo-text .highlight { color: var(--primary); }
+        .logo-icon { color: var(--primary); font-size: 28px; margin-right: 10px; }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 20px !important;
+            border-radius: 10px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-light) !important;
+            background: rgba(108, 60, 225, 0.15);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+            color: #fff;
+        }
+        .btn-primary-custom:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--text-light);
+            background: rgba(108, 60, 225, 0.1);
+        }
+
+        .form-control-glass {
+            background: var(--glass-bg) !important;
+            border: 1px solid var(--glass-border) !important;
+            border-radius: 12px !important;
+            color: var(--text-light) !important;
+            padding: 12px 16px !important;
+            transition: var(--transition) !important;
+        }
+        .form-control-glass:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.2) !important;
+        }
+        .form-control-glass::placeholder { color: var(--text-muted); }
+        .form-label { color: var(--text-muted); font-weight: 500; font-size: 14px; }
+
+        .form-check-input {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+        .form-check-input:checked {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        .form-check-label { color: var(--text-muted); font-size: 14px; }
+
+        .checkout-hero {
+            padding: 140px 0 40px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(108,60,225,0.1), transparent 70%), var(--dark);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 60, 225, 0.15);
+            border: 1px solid rgba(108, 60, 225, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .step-dot {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .step-dot.active {
+            background: rgba(108, 60, 225, 0.2);
+            border-color: var(--primary);
+            color: var(--text-light);
+        }
+        .step-dot .num {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .step-dot.active .num {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .checkout-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .checkout-card h5 {
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .summary-item:last-child { border-bottom: none; }
+        .summary-item .label { color: var(--text-muted); }
+        .summary-item .value { color: var(--text-light); font-weight: 600; }
+        .summary-item.total .value { color: var(--primary); font-size: 18px; }
+
+        .coupon-input {
+            display: flex;
+            gap: 8px;
+        }
+        .coupon-input input {
+            flex: 1;
+        }
+        .coupon-input button {
+            white-space: nowrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            padding: 4px 0;
+        }
+        .trust-badge i { color: var(--primary); width: 20px; }
+
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0 env(safe-area-inset-bottom, 0);
+        }
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 10px;
+            padding: 4px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+        .mobile-bottom-nav .nav-item i { font-size: 22px; margin-bottom: 2px; transition: var(--transition); }
+        .mobile-bottom-nav .nav-item.active { color: var(--primary); }
+        .mobile-bottom-nav .nav-item.active i { transform: translateY(-2px); }
+        .mobile-bottom-nav .nav-item .badge-count {
+            position: absolute;
+            top: -2px;
+            right: 50%;
+            transform: translateX(28px);
+            background: var(--danger);
+            color: #fff;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer h5 { font-weight: 700; margin-bottom: 20px; color: var(--text-light); }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 4px 0;
+        }
+        .footer a:hover { color: var(--text-light); }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: var(--transition);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .social-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-nav { display: flex !important; }
+            .checkout-hero { padding: 120px 0 30px; }
+            .checkout-card { padding: 16px; }
+            .step-dot { font-size: 11px; padding: 6px 12px; }
+            .step-dot .num { width: 20px; height: 20px; font-size: 10px; }
+        }
+        @media (min-width: 769px) { .mobile-bottom-nav { display: none !important; } }
+        @media (max-width: 576px) {
+            .checkout-hero h1 { font-size: 28px; }
+            .btn-primary-custom, .btn-outline-custom { padding: 10px 20px; font-size: 14px; }
+            .footer { padding: 40px 0 20px; }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .emi-calc-result {
+            background: rgba(108, 60, 225, 0.1);
+            border: 1px solid rgba(108, 60, 225, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+        .emi-calc-result .row > div {
+            padding: 4px 0;
+        }
+        .emi-calc-result .label { color: var(--text-muted); font-size: 13px; }
+        .emi-calc-result .value { color: var(--text-light); font-weight: 700; font-size: 16px; }
+        .emi-calc-result .value.primary { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon"><i class="fas fa-cart-plus"></i></span>
+                <span class="logo-text">Nova <span class="highlight">Cart</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="d-flex gap-2 ms-3">
+                    <a href="portal/" class="btn btn-primary-custom"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="admin/" class="btn btn-outline-custom"><i class="fas fa-crown"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== CHECKOUT HERO ===== -->
+    <section class="checkout-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="hero-badge"><i class="fas fa-shopping-cart"></i> Checkout</span>
+                    <h1 class="fw-bold display-4">Complete Your <span class="text-gradient">Order</span></h1>
+                    <p class="text-muted fs-5 mt-3">
+                        Review your order and complete the EMI application.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STEP INDICATOR ===== -->
+    <section class="py-2">
+        <div class="container">
+            <div class="step-indicator">
+                <span class="step-dot active"><span class="num">1</span> Cart</span>
+                <span class="step-dot active"><span class="num">2</span> Checkout</span>
+                <span class="step-dot"><span class="num">3</span> EMI Application</span>
+                <span class="step-dot"><span class="num">4</span> Review</span>
+                <span class="step-dot"><span class="num">5</span> Submit</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CHECKOUT CONTENT ===== -->
+    <section class="py-3">
+        <div class="container">
+            <div class="row g-4">
+                <!-- ===== LEFT COLUMN ===== -->
+                <div class="col-lg-7">
+
+                    <!-- ===== CUSTOMER INFO ===== -->
+                    <div class="checkout-card">
+                        <h5><i class="fas fa-user text-primary"></i> Customer Information</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control form-control-glass" value="Rahul Sharma" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control form-control-glass" value="9876543210" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">WhatsApp Number</label>
+                                <input type="tel" class="form-control form-control-glass" value="9876543210" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control form-control-glass" value="rahul@example.com" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== DELIVERY ADDRESS ===== -->
+                    <div class="checkout-card">
+                        <h5><i class="fas fa-location-dot text-primary"></i> Delivery Address</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control form-control-glass" value="Rahul Sharma" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control form-control-glass" value="9876543210" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">House / Flat Number</label>
+                                <input type="text" class="form-control form-control-glass" value="A-101, Green Apartments" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Street / Area</label>
+                                <input type="text" class="form-control form-control-glass" value="Andheri East" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control form-control-glass" value="Mumbai" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">District</label>
+                                <input type="text" class="form-control form-control-glass" value="Mumbai Suburban" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">PIN Code</label>
+                                <input type="text" class="form-control form-control-glass" value="400093" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">State</label>
+                                <input type="text" class="form-control form-control-glass" value="Maharashtra" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== EMI SELECTION ===== -->
+                    <div class="checkout-card">
+                        <h5><i class="fas fa-chart-line text-primary"></i> EMI Selection</h5>
+                        <div class="row g

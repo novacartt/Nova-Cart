@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Application – Nova Cart</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary: #6C3CE1;
+            --primary-dark: #5A2FC4;
+            --primary-light: #8B6BE8;
+            --secondary: #00C9A7;
+            --success: #2ED573;
+            --warning: #FFA502;
+            --danger: #FF4757;
+            --dark: #0A0A1A;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0B8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            padding-bottom: 80px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+        }
+
+        .navbar {
+            padding: 16px 0;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 26, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-text { font-size: 24px; font-weight: 800; color: var(--text-light); text-decoration: none; }
+        .logo-text .highlight { color: var(--primary); }
+        .logo-icon { color: var(--primary); font-size: 28px; margin-right: 10px; }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 20px !important;
+            border-radius: 10px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-light) !important;
+            background: rgba(108, 60, 225, 0.15);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--text-light);
+            background: rgba(108, 60, 225, 0.1);
+        }
+
+        .track-hero {
+            padding: 140px 0 40px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(108,60,225,0.1), transparent 70%), var(--dark);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 60, 225, 0.15);
+            border: 1px solid rgba(108, 60, 225, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .track-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .track-card h5 {
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .status-badge.pending { background: rgba(255, 165, 2, 0.2); color: var(--warning); }
+        .status-badge.approved { background: rgba(46, 213, 115, 0.2); color: var(--success); }
+        .status-badge.rejected { background: rgba(255, 71, 87, 0.2); color: var(--danger); }
+        .status-badge.review { background: rgba(108, 60, 225, 0.2); color: var(--primary-light); }
+        .status-badge.completed { background: rgba(46, 213, 115, 0.2); color: var(--success); }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--glass-border);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-item .dot {
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            border: 2px solid var(--glass-border);
+        }
+        .timeline-item.active .dot {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(108, 60, 225, 0.3);
+        }
+        .timeline-item.completed .dot {
+            background: var(--success);
+            border-color: var(--success);
+        }
+        .timeline-item .time {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .timeline-item .title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .timeline-item .desc {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .progress-ring {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            position: relative;
+            background: conic-gradient(var(--primary) 0%, var(--glass-bg) 0%);
+        }
+        .progress-ring .inner {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .progress-ring .inner .percent {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-light);
+        }
+        .progress-ring .inner .label {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        .verification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .verification-item:last-child { border-bottom: none; }
+        .verification-item .icon { width: 32px; color: var(--text-muted); }
+        .verification-item .name { flex: 1; font-size: 14px; }
+        .verification-item .status {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 50px;
+        }
+        .verification-item .status.done { background: rgba(46, 213, 115, 0.15); color: var(--success); }
+        .verification-item .status.pending { background: rgba(255, 165, 2, 0.15); color: var(--warning); }
+        .verification-item .status.failed { background: rgba(255, 71, 87, 0.15); color: var(--danger); }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer h5 { font-weight: 700; margin-bottom: 20px; color: var(--text-light); }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 4px 0;
+        }
+        .footer a:hover { color: var(--text-light); }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: var(--transition);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .social-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0 env(safe-area-inset-bottom, 0);
+        }
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 10px;
+            padding: 4px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+        .mobile-bottom-nav .nav-item i { font-size: 22px; margin-bottom: 2px; transition: var(--transition); }
+        .mobile-bottom-nav .nav-item.active { color: var(--primary); }
+        .mobile-bottom-nav .nav-item.active i { transform: translateY(-2px); }
+        .mobile-bottom-nav .nav-item .badge-count {
+            position: absolute;
+            top: -2px;
+            right: 50%;
+            transform: translateX(28px);
+            background: var(--danger);
+            color: #fff;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-nav { display: flex !important; }
+            .track-hero { padding: 120px 0 30px; }
+            .track-card { padding: 16px; }
+            .timeline { padding-left: 24px; }
+            .timeline-item .dot { left: -20px; width: 12px; height: 12px; }
+            .progress-ring { width: 80px; height: 80px; }
+            .progress-ring .inner { width: 56px; height: 56px; }
+            .progress-ring .inner .percent { font-size: 16px; }
+        }
+        @media (min-width: 769px) { .mobile-bottom-nav { display: none !important; } }
+        @media (max-width: 576px) {
+            .track-hero h1 { font-size: 28px; }
+            .btn-primary-custom, .btn-outline-custom { padding: 10px 20px; font-size: 14px; }
+            .footer { padding: 40px 0 20px; }
+        }
+
+        .search-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: var(--transition);
+        }
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 60, 225, 0.2);
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            width: 100%;
+            font-size: 16px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+        .search-box i { color: var(--text-muted); font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon"><i class="fas fa-cart-plus"></i></span>
+                <span class="logo-text">Nova <span class="highlight">Cart</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="d-flex gap-2 ms-3">
+                    <a href="portal/" class="btn btn-primary-custom"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="admin/" class="btn btn-outline-custom"><i class="fas fa-crown"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== TRACK HERO ===== -->
+    <section class="track-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="hero-badge"><i class="fas fa-search"></i> Track Application</span>
+                    <h1 class="fw-bold display-4">Track Your <span class="text-gradient">Application</span></h1>
+                    <p class="text-muted fs-5 mt-3">
+                        Enter your Application ID to check the current status.
+                    </p>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-lg-6 mx-auto">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="trackInput" placeholder="Enter Application ID (e.g., APP-XXXXXXXX)" />
+                        <button class="btn btn-primary-custom" onclick="trackApplication()" style="padding: 8px 20px; font-size: 14px;">
+                            Track
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== APPLICATION DETAILS ===== -->
+    <section class="py-3" id="applicationDetails" style="display: none;">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- ===== STATUS CARD ===== -->
+                <div class="col-lg-4">
+                    <div class="track-card text-center">
+                        <h5>Application Status</h5>
+                        <div class="progress-ring" id="progressRing">
+                            <div class="inner">
+                                <span class="percent" id="progressPercent">65%</span>
+                                <span class="label">Complete</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="status-badge review" id="statusBadge">Under Review</span>
+                        </div>
+                        <div class="mt-2">
+                            <p class="text-muted" style="font-size: 14px;" id="appIdDisplay">Application ID: APP-XXXXXXXX</p>
+                            <p class="text-muted" style="font-size: 13px;" id="appDateDisplay">Submitted: 06 Aug 2026, 10:30 AM</p>
+                        </div>
+                        <div class="mt-3 d-flex gap-2 justify-content-center flex-wrap">
+                            <a href="apply-emi.html" class="btn btn-outline-custom" style="padding: 8px 16px; font-size: 13px;">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <button class="btn btn-outline-custom" style="padding: 8px 16px; font-size: 13px; border-color: var(--danger); color: var(--danger);" onclick="if(confirm('Are you sure you want to cancel this application?')){alert('Cancellation request submitted.');}">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== TIMELINE ===== -->
+                <div class="col-lg-8">
+                    <div class="track-card">
+                        <h5><i class="fas fa-clock text-primary"></i> Application Timeline</h5>
+                        <div class="timeline" id="timelineContainer">
+                            <!-- Timeline items rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== VERIFICATION STATUS ===== -->
+                <div class="col-12">
+                    <div class="track-card">
+                        <h5><i class="fas fa-shield-halved text-primary"></i> Verification Center</h5>
+                        <div id="verificationContainer">
+                            <!-- Verification items rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== QUICK ACTIONS ===== -->
+                <div class="col-12">
+                    <div class="track-card">
+                        <h5><i class="fas fa-bolt text-primary"></i> Quick Actions</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="apply-emi.html" class="btn btn-primary-custom" style="padding: 8px 20px; font-size: 13px;">
+                                <i class="fas fa-file-pen"></i> Continue 

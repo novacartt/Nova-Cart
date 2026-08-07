@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notifications – Nova Cart</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary: #6C3CE1;
+            --primary-dark: #5A2FC4;
+            --primary-light: #8B6BE8;
+            --secondary: #00C9A7;
+            --success: #2ED573;
+            --warning: #FFA502;
+            --danger: #FF4757;
+            --dark: #0A0A1A;
+            --text-light: #FFFFFF;
+            --text-muted: #A0A0B8;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text-light);
+            padding-bottom: 80px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+        }
+
+        .navbar {
+            padding: 16px 0;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 26, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-text { font-size: 24px; font-weight: 800; color: var(--text-light); text-decoration: none; }
+        .logo-text .highlight { color: var(--primary); }
+        .logo-icon { color: var(--primary); font-size: 28px; margin-right: 10px; }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 20px !important;
+            border-radius: 10px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-light) !important;
+            background: rgba(108, 60, 225, 0.15);
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.4);
+            color: #fff;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--text-light);
+            background: rgba(108, 60, 225, 0.1);
+        }
+
+        .notif-hero {
+            padding: 140px 0 40px;
+            background: radial-gradient(ellipse at 50% 30%, rgba(108,60,225,0.1), transparent 70%), var(--dark);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108, 60, 225, 0.15);
+            border: 1px solid rgba(108, 60, 225, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .notif-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .notif-item:hover {
+            border-color: rgba(108, 60, 225, 0.3);
+            transform: translateX(4px);
+        }
+        .notif-item.unread {
+            border-left: 3px solid var(--primary);
+        }
+        .notif-item .icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: 50%;
+            background: rgba(108, 60, 225, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-light);
+            font-size: 18px;
+        }
+        .notif-item .content { flex: 1; }
+        .notif-item .content .title {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .notif-item .content .desc {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .notif-item .content .time {
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .notif-item .action {
+            display: flex;
+            gap: 8px;
+        }
+        .notif-item .action button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        .notif-item .action button:hover { color: var(--text-light); }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .filter-tabs .tab {
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .filter-tabs .tab:hover {
+            border-color: var(--primary);
+            color: var(--text-light);
+        }
+        .filter-tabs .tab.active {
+            background: rgba(108, 60, 225, 0.2);
+            border-color: var(--primary);
+            color: var(--text-light);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        .footer h5 { font-weight: 700; margin-bottom: 20px; color: var(--text-light); }
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            padding: 4px 0;
+        }
+        .footer a:hover { color: var(--text-light); }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            transition: var(--transition);
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .social-icon:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(108, 60, 225, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 0 env(safe-area-inset-bottom, 0);
+        }
+        .mobile-bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 10px;
+            padding: 4px 0;
+            transition: var(--transition);
+            position: relative;
+        }
+        .mobile-bottom-nav .nav-item i { font-size: 22px; margin-bottom: 2px; transition: var(--transition); }
+        .mobile-bottom-nav .nav-item.active { color: var(--primary); }
+        .mobile-bottom-nav .nav-item.active i { transform: translateY(-2px); }
+        .mobile-bottom-nav .nav-item .badge-count {
+            position: absolute;
+            top: -2px;
+            right: 50%;
+            transform: translateX(28px);
+            background: var(--danger);
+            color: #fff;
+            font-size: 10px;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-bottom-nav { display: flex !important; }
+            .notif-hero { padding: 120px 0 30px; }
+            .notif-item { padding: 14px 16px; flex-wrap: wrap; }
+            .notif-item .icon { width: 32px; height: 32px; min-width: 32px; font-size: 14px; }
+            .filter-tabs .tab { font-size: 12px; padding: 6px 14px; }
+        }
+        @media (min-width: 769px) { .mobile-bottom-nav { display: none !important; } }
+        @media (max-width: 576px) {
+            .notif-hero h1 { font-size: 28px; }
+            .btn-primary-custom, .btn-outline-custom { padding: 10px 20px; font-size: 14px; }
+            .footer { padding: 40px 0 20px; }
+        }
+
+        .notif-count {
+            background: var(--danger);
+            color: #fff;
+            font-size: 12px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <span class="logo-icon"><i class="fas fa-cart-plus"></i></span>
+                <span class="logo-text">Nova <span class="highlight">Cart</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="d-flex gap-2 ms-3">
+                    <a href="portal/" class="btn btn-primary-custom"><i class="fas fa-user"></i> Dashboard</a>
+                    <a href="admin/" class="btn btn-outline-custom"><i class="fas fa-crown"></i> Admin</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== NOTIFICATIONS HERO ===== -->
+    <section class="notif-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <span class="hero-badge"><i class="fas fa-bell"></i> Notifications</span>
+                    <h1 class="fw-bold display-4">Your <span class="text-gradient">Notifications</span></h1>
+                    <p class="text-muted fs-5 mt-3">
+                        Stay updated with your application, EMI and order status.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NOTIFICATIONS ===== -->
+    <section class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+
+                    <!-- ===== FILTER TABS ===== -->
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                        <div class="filter-tabs">
+                            <span class="tab active" onclick="filterNotifications('all')">All</span>
+                            <span class="tab" onclick="filterNotifications('unread')">Unread <span class="notif-count">3</span></span>
+                            <span class="tab" onclick="filterNotifications('emi')">EMI</span>
+                            <span class="tab" onclick="filterNotifications('application')">Applications</span>
+                            <span class="tab" onclick="filterNotifications('order')">Orders</span>
+                            <span class="tab" onclick="filterNotifications('refund')">Refunds</span>
+                        </div>
+                        <button class="btn btn-outline-custom" style="padding: 6px 16px; font-size: 13px;" onclick="markAllRead()">
+                            <i class="fas fa-check-double"></i> Mark All Read
+                        </button>
+                    </div>
+
+                    <!-- ===== NOTIFICATIONS LIST ===== -->
+                    <div id="notificationsList">
+
+                        <!-- Notification 1 -->
+                        <div class="notif-item unread" data-type="application">
+                            <div class="icon"><i class="fas fa-file-pen"></i></div>
+                            <div class="content">
+                                <div class="title">Application Under Review</div>
+                                <div class="desc">Your EMI application #APP-20260806 is now under review. We'll update you within 24-72 hours.</div>
+                                <div class="time">Today, 10:30 AM</div>
+                            </div>
+                            <div class="action">
+                                <button onclick="markRead(this)" title="Mark as Read"><i class="fas fa-check"></i></button>
+                                <button onclick="deleteNotif(this)" title="Delete"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 2 -->
+                        <div class="notif-item unread" data-type="emi">
+                            <div class="icon"><i class="fas fa-credit-card"></i></div>
+                            <div class="content">
+                                <div class="title">EMI Due Reminder</div>
+                                <div class="desc">Your EMI payment of ₹1,499 is due on 15 August 2026. Please ensure timely payment.</div>
+                                <div class="time">Today, 8:00 AM</div>
+                            </div>
+                            <div class="action">
+                                <button onclick="markRead(this)"><i class="fas fa-check"></i></button>
+                                <button onclick="deleteNotif(this)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 3 -->
+                        <div class="notif-item unread" data-type="order">
+                            <div class="icon"><i class="fas fa-truck"></i></div>
+                            <div class="content">
+                                <div class="title">Order Shipped</div>
+                                <div class="desc">Your order #NOVA-20260806 has been shipped. Expected delivery: 10 August 2026.</div>
+                                <div class="time">Yesterday, 6:00 PM</div>
+                            </div>
+                            <div class="action">
+                                <button onclick="markRead(this)"><i class="fas fa-check"></i></button>
+                                <button onclick="deleteNotif(this)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 4 -->
+                        <div class="notif-item" data-type="refund">
+                            <div class="icon"><i class="fas fa-rotate-left"></i></div>
+                            <div class="content">
+                                <div class="title">Refund Initiated</div>
+                                <div class="desc">Your refund of ₹7,500 has been initiated. It will reflect in your account within 24-72 hours.</div>
+                                <div class="time">Yesterday, 2:30 PM</div>
+                            </div>
+                            <div class="action">
+                                <button onclick="markRead(this)"><i class="fas fa-check"></i></button>
+                                <button onclick="deleteNotif(this)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 5 -->
+                        <div class="notif-item" data-type="application">
+                            <div class="icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="content">
+                                <div class="title">Application Approved</div>
+                                <div class="desc">Congratulations! Your EMI application #APP-20260805 has been approved. Complete your down payment to confirm the order.</div>
+                                <div class="time">2 days ago, 11:00 AM</div>
+                            </div>
+                            <div class="action">
+                                <button onclick="markRead(this)"><i class="fas fa-check"></i></button>
+                                <button onclick="deleteNotif(this)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Notification 6 -->
+                        <div class="notif-item" data-type="emi">
+                            <div class="icon"><i class="fas fa-check-circle"></i></div>
+                            <div class
