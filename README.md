@@ -1,31 +1,29 @@
-# EMI Store — Snapmint-inspired starter
+# Nova-Cart — EMI Store
 
-This ZIP is a functional front-end prototype for an EMI-first shopping platform.
+This version is intentionally arranged for direct GitHub "Add files → Upload files" upload.
 
-## Included
-- Responsive storefront
-- Product catalogue and search/sort
-- Product details
-- Cart
-- EMI calculator
-- EMI application form
-- Camera/selfie permission flow
-- Demo application storage/status
-- Demo admin review (approve/reject)
-- Account, orders, support and legal placeholder pages
-- Firebase configuration template
+ALL WEBSITE FILES ARE IN THE ROOT:
+- index.html
+- product.html
+- products.js
+- app.js
+- style.css
+- emi.html
+- emi-application.html
+- cart.html
+- account.html
+- orders.html
+- support.html
+- admin.html
+- privacy.html
+- terms.html
+- refund.html
+- firebase-config.example.js
 
-## Important
-This is NOT a production lending/BNPL system. Real KYC, credit decisions, loan servicing, payment collection, regulated lending, document storage and compliance require appropriate providers/partners and secure server-side implementation.
+No css/, js/, or admin/ folders are required.
 
-## Run
-Open `index.html` in a browser or serve the folder with any static web server.
+GitHub Pages:
+Settings → Pages → Deploy from branch → main → / (root).
 
-## Production next steps
-1. Create Firebase project and configure Authentication/Firestore/Storage with strict security rules.
-2. Move sensitive operations to a trusted backend/Cloud Functions.
-3. Integrate a regulated lending/financing partner for eligibility and credit.
-4. Integrate payment gateway and webhooks.
-5. Add secure KYC provider rather than storing sensitive identifiers directly in browser localStorage.
-6. Add merchant, settlement, returns, refunds, delivery and support integrations.
-7. Replace legal placeholders with reviewed policies.
+Important:
+This is a front-end/demo EMI platform. Real KYC, lending/credit decisions, payments, document storage and loan servicing require a secure backend and appropriate regulated partners.
